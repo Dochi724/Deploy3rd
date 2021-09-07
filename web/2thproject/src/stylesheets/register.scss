@@ -1,0 +1,13 @@
+.register {
+    display: flex;
+    flex-direction: column;
+    form {
+        display: flex;
+        flex-direction: column;
+        input {
+            width: 400px;
+            height: 50px;
+            border-radius: 8px;
+        }
+    }
+}
