@@ -25,12 +25,12 @@ const Register = () => {
     }
     const onSubmit = (e) => { // 제출하면 이 입력한 정보
         e.preventDefault();
-        axios.post('http://127.0.0.1:8000/account/signup', { // 장고에 이 주소랑 통신해서 회원 가입함!! 형식은 POST
+        axios.post('http://127.0.0.1:8000/account/signup/', { // 장고에 이 주소랑 통신해서 회원 가입함!! 형식은 POST
             username: name, // 장고 변수명: 넣어줄 우리 변수명 json형식!!!!
             password: password,
             email: email,
             favorite_place: favoritePlace 
-        }, {withCredentials: true}) // 장고는 8000번, 리액트는 3000번 포트 사용 -> CORS 에러 생김!!!
+        }) // 장고는 8000번, 리액트는 3000번 포트 사용 -> CORS 에러 생김!!!
         .then(response => console.log(response)) // 일단 서버 대답 받아와서 콘솔로 확인해봤음!!
         console.log('제출');
     }

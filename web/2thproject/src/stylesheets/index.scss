@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
 } // 초기화
+
+html {
+    font-size: 16px;
+}
