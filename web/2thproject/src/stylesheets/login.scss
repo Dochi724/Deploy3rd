@@ -1,0 +1,86 @@
+#login {
+    display: flex;
+    justify-content: center;
+}
+
+#login h1 {
+    display: flex;
+    justify-content: center;
+    margin: 2em auto 1em auto;
+}
+#login input {
+    margin: auto;
+    width: 20.75rem;
+    height: 2.6875rem;
+    border: 2px solid #dbdbdb;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.8125rem;
+}
+
+#login input::placeholder {
+    color: #dbdbdb;
+}
+
+#login .login-input {
+    padding-left: 0.8125em;
+}
+#login form {
+    display: flex;
+    flex-direction: column;
+}
+
+#login #find-field {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.9375em;
+}
+
+#login #find-field a {
+    font-size: 0.875em;
+    color: #000000;
+    font-weight: bold;
+}
+
+#login .login-button {
+    color: #ffffff;
+    background-color: #000000;
+    border-color: #000000;
+    margin-bottom: 2.1em;
+    cursor: pointer;
+}
+
+#login .just-login-or-register-line {
+    width: 9.0625em;
+    border-bottom: 2px solid #dbdbdb;
+}
+
+#just-login-or-register {
+    display: flex;
+    justify-content: space-between;
+}
+
+#just-login-or-register p {
+    font-size: 0.875em;
+    color: #dbdbdb;
+    font-weight: bold;
+}
+
+#login .just-login-line-div{
+    display: flex;
+    align-items: center;
+}
+
+.register-button {
+    width: 20.75rem;
+    height: 2.6875rem;
+    color: #ffffff;
+    background-color: #FFCD58;
+    border-radius: 5px;
+    border: none;
+    margin-top: 0.3125rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: bold;
+}
