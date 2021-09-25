@@ -22,9 +22,9 @@ const Register = () => {
     const onFavoritePlaceChange = e => {
         setFavoritePlace(e.target.value)
         console.log(e.target.value)
-    }
+    } // 3개까지 검색해서 선택할 수 있게
     const onSubmit = (e) => { // 제출하면 이 입력한 정보
-        e.preventDefault();
+        e.preventDefault(); // 새로고침 안되게하는거
         axios.post('http://127.0.0.1:8000/account/signup/', { // 장고에 이 주소랑 통신해서 회원 가입함!! 형식은 POST
             username: name, // 장고 변수명: 넣어줄 우리 변수명 json형식!!!!
             password: password,
