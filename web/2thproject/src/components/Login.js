@@ -3,27 +3,6 @@ import { Link } from "react-router-dom";
 import '../stylesheets/login.scss'; 
 import axios from "axios";
 const Login = () => {
-<<<<<<< HEAD
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const onEmailChange = (e) => {
-    console.log(e.target.value);
-    setEmail(e.target.value);
-  };
-  const onPasswordChange = (e) => {
-    setPassword(e.target.value);
-    console.log(e);
-  };
-  return (
-    <div>
-      <input type="email" onChange={onEmailChange} value={email} />
-      <input type="password" onChange={onPasswordChange} value={password} />
-      <button>로그인</button>
-      <Link to="/register">회원가입</Link>
-    </div>
-  );
-};
-=======
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const onNameChange = (e) => {
@@ -70,7 +49,7 @@ const Login = () => {
         </div>
     )
 }
->>>>>>> dc4047dc26ac9aa59100ff011fffe8f348c51ce5
+
 
 export default Login;
 /* function Login() {}
