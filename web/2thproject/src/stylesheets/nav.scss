@@ -1,0 +1,38 @@
+#nav {
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#nav ul {
+    display: flex;
+    align-items: center;
+}
+
+#nav ul li a {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-right: 0.5rem;
+    color: #c4c4c3;
+}
+
+#nav button {
+    background-color: #ffffff;
+    color: #FFCD58;
+    font-weight: bold;
+    border: 1px solid #FFCD58;
+    border-radius: 5px;
+    padding: 3px 6px 3px 6px;
+}
+
+#nav #nav-write-button {
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #000000;
+    padding: 3px 8px 3px 8px;
+    margin-right: 0.4rem;
+}
+
+#nav #nav-button-border {
+    margin-left: 2rem;
+}

@@ -57,15 +57,49 @@ const Register = () => {
     }
     return (
         <div className = "register">
+            <h1>로고</h1>
             <h1>회원가입</h1>
             <form onSubmit={onSubmit}>
-                <input type="text" value={name} placeholder="이름" onChange={onNameChange} required/>
-                <input type="email" value={email} placeholder="이메일" onChange={onEmailChange} required/>
-                <input type="password" value={password} placeholder="비밀번호" onChange={onPasswordChange} required/>
-                <input type="password" value={passwordConfirm} placeholder="비밀번호확인" onChange={onPasswordConfirmChange} required/>
-                {passwordError && <p>비밀번호 틀림</p>}
-                <input type="text" value={favoritePlace} placeholder="자주 찾는 장소" onChange={onFavoritePlaceChange} required/>
-                <input type="submit" value="회원가입" />
+                <div>
+                    <div className = "register-label">
+                        <p className="necessary">*</p>
+                        <p>이름</p>
+                    </div>
+                    <input type="text" value={name} placeholder="이름" onChange={onNameChange} required/>
+                </div>
+                <div>
+                    <div className = "register-label">
+                        <p className="necessary">*</p>
+                        <p>이메일</p>
+                    </div>
+                    <input type="email" value={email} placeholder="mimirok@co.kr" onChange={onEmailChange} required/>
+                </div>
+                <div>
+                    <div className = "register-label">
+                        <p className="necessary">*</p>
+                        <p>비밀번호</p>
+                    </div>
+                    <input type="password" value={password} placeholder="비밀번호" onChange={onPasswordChange} required/>
+                </div>
+                <div>
+                    <div className = "register-label">
+                        <p className="necessary">*</p>
+                        <p>비밀번호 확인</p>
+                    </div>
+                    <input type="password" value={passwordConfirm} placeholder="비밀번호확인" onChange={onPasswordConfirmChange} required/>
+                    {passwordError && <p>비밀번호 틀림</p>}
+                </div>
+                <div>
+                <div className = "register-label">
+                        <p className="necessary">*</p>
+                        <p>좋아하는 장소</p>
+                    </div>
+                    <input type="text" value={favoritePlace} placeholder="최대 3개" onChange={onFavoritePlaceChange} required/>
+                </div>
+                <div className="just-register-line"/>
+                <div>
+                    <input type="submit" value="회원가입" id = "register-submit-button"/>
+                </div>
             </form>
         </div>
     )

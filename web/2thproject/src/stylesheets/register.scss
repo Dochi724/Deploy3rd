@@ -5,13 +5,44 @@
         display: flex;
         flex-direction: column;
         input {
-            width: 400px;
-            height: 50px;
-            border-radius: 8px;
+            width: 20.75rem;
+            height: 2.7rem;
+            border-radius: 5px;
             font-weight: 900;
             padding-left: 1rem;
             margin-bottom: 0.5rem;
+            border: 2px solid #dbdbdb;
         }
     }
     align-items: center;
+}
+
+.register input::placeholder {
+    color: dbdbdb;
+}
+
+.register h1 {
+    font-size: 1.5rem;
+}
+
+.register-label {
+    display: flex;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.register-label .necessary {
+    color: red
+}
+
+.just-register-line {
+    width: 20.75rem;
+    border-bottom: 2px solid #dbdbdb;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.register #register-submit-button {
+    background-color: #ffcd58;
+    color: #ffffff;
+    border-color: #ffcd58;
 }

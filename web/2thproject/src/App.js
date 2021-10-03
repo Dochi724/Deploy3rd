@@ -6,21 +6,24 @@ import Ranking from './components/Ranking'
 import Write from './components/Write'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Register from './components/Register';
+import PublicRoute from './lib/PublicRoute';
+import PrivateRoute from './lib/PrivageRoute';
 const App = () => {
   return (
-    
+  // PublicRoute : 로그인되어있고 restricted가 true이면 접근 못함 ex)회원가입 페이지
+  // PrivateRoute : 로그인 안했을때 접근 못함 ex)home
     <Router>
       <div>
         <Switch> 
-          <Route exact path="/" component={Home} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/ranking" component={Ranking} />
-          <Route path="/write" component={Write} />
-          <Route path="*">
+          <PrivateRoute exact path="/" component={Home} />
+          <PublicRoute path="/login" component={Login} />
+          <PublicRoute path="/register" component={Register} />
+          <PrivateRoute path="/profile" component={Profile} />
+          <PrivateRoute path="/ranking" component={Ranking} />
+          <PrivateRoute path="/write" component={Write} />
+          <PrivateRoute path="*">
             <h1>이상한 페이지</h1>
-          </Route>
+          </PrivateRoute>
         </Switch>
       </div>
     </Router>

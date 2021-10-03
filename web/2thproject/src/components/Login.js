@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import '../stylesheets/login.scss'; 
+import { useHistory } from "react-router";
 import axios from "axios";
 const Login = () => {
+    const history = useHistory();
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const onNameChange = (e) => {
@@ -14,12 +16,21 @@ const Login = () => {
 
     const onSubmit = e => {
         e.preventDefault();
-        // axios.post('http://127.0.0.1:8000/account/api-auth/login/', { // 장고에 이 주소랑 통신해서 회원 가입함!! 형식은 POST
-        //     username: name,
-        //     password: password,
-        // }) 
-        // .then(response => console.log(response)) // 일단 서버 대답 받아와서 콘솔로 확인해봤음!!
-        // console.log('제출');
+        axios.post('http://127.0.0.1:8000/account/login/', { // 장고에 이 주소랑 통신해서 회원 가입함!! 형식은 POST
+            username: name,
+            password: password,
+        }) 
+        .then(response => {
+            console.log(response)
+            if(response.data.success) {
+                sessionStorage.setItem('user', name);
+                history.push('/');
+            }
+            else {
+                alert('로그인 실패!');
+            }
+        }) // 일단 서버 대답 받아와서 콘솔로 확인해봤음!!
+    
     }
 
     return ( 
