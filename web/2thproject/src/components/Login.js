@@ -32,6 +32,10 @@ const Login = () => {
         }) // 일단 서버 대답 받아와서 콘솔로 확인해봤음!!
     
     }
+    const onSuperClick = () => {
+        sessionStorage.setItem('user', "개발자");
+        history.push('/');
+    }
 
     return ( 
         <div id = "login" onSubmit={onSubmit}>
@@ -56,6 +60,7 @@ const Login = () => {
                         </div>
                     </div>
                     <Link to="/register"><button className = "register-button">회원가입</button></Link>
+                <button onClick={onSuperClick}>개발자 모드</button>
             </div>
         </div>
     )
