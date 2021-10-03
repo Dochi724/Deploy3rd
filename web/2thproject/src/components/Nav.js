@@ -15,7 +15,7 @@ const Nav = () => {
     <div id = "nav">
       <ul>
         <li>
-          <Link to="/">HOME</Link>
+          <Link to= "/">HOME</Link>
         </li>
         <li>
           <Link to="/ranking">RANKING</Link>
