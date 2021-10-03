@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import datetime
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,6 +41,8 @@ INSTALLED_APPS = [
     'account',
     'rest_framework',
     'corsheaders',
+    'taggit',
+    'articles',
 ]
 
 CORS_ORIGIN_WHITELIST = ['http://localhost:3000']
@@ -132,3 +135,13 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'account.User'
+
+# import settings
+
+JWT_AUTH = { 
+    # 'JWT_SECRET_KEY': settings.SECRET_KEY, 
+    'JWT_ALGORITHM': 'HS256', 
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3600), 
+    'JWT_ALLOW_REFRESH': False, 
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7), 
+}
