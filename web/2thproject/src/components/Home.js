@@ -1,16 +1,72 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Nav from "./Nav";
+import styled, { createGlobalStyle } from "styled-components";
+import axios from "axios";
 
 const Home = () => {
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    axios
+      .get("https://jsonplaceholder.typicode.com/posts")
+      .then(({ data }) => setPosts(data));
+  }, []);
   return (
-    <div>
-      <Nav />
-      <h1>임시 홈</h1>
-      <h2>주소창 뒤에</h2>
-      <h3>로그인: /login</h3>
-      <h3>회원가입: /register</h3>
-    </div>
+    <>
+    <Nav />
+    <Container>
+      <GlobalStyle />
+      {posts.map((post, index) => (
+        <Post key={index}>
+          <Title>{post.title}</Title>
+          <Body>{post.body}</Body>
+        </Post>
+      ))}
+    </Container>
+    </>
   );
-};
+}
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+  }
+`;
+
+const Container = styled.div`
+  min-height: 100vh;
+  padding: 200px 0;
+  display: grid;
+  grid-template-columns: repeat(4, 300px);
+  grid-template-rows: repeat(auto-fit, 300px);
+  grid-auto-rows: 300px;
+  grid-gap: 30px 20px;
+  justify-content: center;
+  background: #FFCD58;
+  box-sizing: border-box;
+`;
+
+const Post = styled.div`
+  border: 1px solid black;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 10px 5px 5px #7f8fa6;
+`;
+
+const Title = styled.div`
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid black;
+  font-weight: 600;
+`;
+
+const Body = styled.div`
+  height: 80%;
+  padding: 11px;
+  border-radius: 20px;
+`;
 
 export default Home;
+  
+// ...
