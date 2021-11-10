@@ -32,7 +32,7 @@ class UserManager(BaseUserManager):
         return user
 
 class User(AbstractBaseUser):
-    id = models.AutoField(primary_key=True)
+   
     email = models.EmailField(default='', max_length=100, null=False, blank=False, unique=True)
     username = models.CharField(default='', max_length=100, null=False, blank=False, unique=True)
     favorite_place = models.CharField(default='', max_length=100, null=False, blank=False)

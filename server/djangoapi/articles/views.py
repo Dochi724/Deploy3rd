@@ -1,80 +1,100 @@
-from django.shortcuts import render, get_list_or_404, get_object_or_404
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from django.http.response import HttpResponse
+from django.shortcuts import get_list_or_404, get_object_or_404, render
+from .serializers import ArticleListSerializer,ArticleDetailSerializer,CommentSerializer, LikeSerializer
 from rest_framework import status
-from .models import Article
-from . serializers import ArticleListSerializer,ArticleSerializer
+from rest_framework.response import Response
+from rest_framework.decorators import api_view, permission_classes
+# Create your views here.
+from .models import Article,Comment,Like
+from django.contrib.auth.decorators import login_required
 
-from .models import Comment
-from .serializers import CommentSerializer
+#게시글
 
-from rest_framework.viewsets import ModelViewSet
-from .serializers import PostSerializer
-from .models import Post
-
-@api_view(['GET', 'POST'])
-def article_list(request) : 
-    if request.method=="GET" :
+@api_view(['GET','POST'])
+def article_list(request):
+    if request.method =='POST':
+        serializer = ArticleListSerializer(data=request.data)
+        if not serializer.is_valid(raise_exception=True):
+            return Response({"message": "Request Body Error."}, status=status.HTTP_409_CONFLICT)
+        else :
+            serializer.save()
+            return Response({"message": "success!"}, status=status.HTTP_201_CREATED)
+    if request.method == 'GET':
         articles = get_list_or_404(Article)
         serializer = ArticleListSerializer(articles, many=True)
         return Response(serializer.data)
-    elif request.method=="POST" :
-        serializer = ArticleSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True) : 
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED) # 저장성공을 알림
-            # return Response(serializer.error, status = status.HTTP_400_BAD_REQUEST) # 저장 실패를 알림
+
 
 @api_view(['GET', 'DELETE', 'PUT'])
-def article_detail(request, article_pk) :
+def article_detail(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
-    if request.method == "GET" :        # 글 상세보기
-        serializer = ArticleSerializer(article)
+    if request.method=='GET':
+        serializer = ArticleDetailSerializer(article)
         return Response(serializer.data)
-    elif request.method == "DELETE" :        # 글 삭제
+    
+    elif request.method=='DELETE':
         article.delete()
         data = {
-            'delete' : f'데이터 {article_pk}번이 삭제되었습니다.'
-        }
+            'delete' : f'데이터 {article_pk}번이 삭제 되었습니다.'
+          }
         return Response(data, status=status.HTTP_204_NO_CONTENT)
-    elif request.method == "PUT" : # 글 수정하기
-        serializer = ArticleSerializer(article, data=request.data)
-        if serializer.is_valid(raise_exception=True) : # 실패시 에러발생시키기
+    
+    elif request.method == 'PUT':
+        serializer = ArticleDetailSerializer(article, data=request.data)
+        if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
 
+#댓글
+
 @api_view(['GET'])
-def comment_list(request) :
-    comments = get_list_or_404(Comment)
-    serializer = CommentSerializer(comments, many=True)
+def comment_list(request):
+    comment = get_list_or_404(Comment)
+    serializer = CommentSerializer(comment, many=True)
     return Response(serializer.data)
 
 @api_view(['GET', 'DELETE', 'PUT'])
-def comment_detail(request, comment_pk) :
-    comments = get_list_or_404(Comment, pk = comment_pk)
-    if request.method == 'GET' :
-        serializer = CommentSerializer(comments)
+def comment_detail(request, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
+    if request.method == 'GET':
+        serializer = CommentSerializer(comment)
         return Response(serializer.data)
-    elif request.method == "DELETE" :
-        comments.delete()
-        data= {
-            'delete' :f'댓글 {comment_pk}번이 삭제 되었습니다.'
+
+    elif request.method == 'DELETE':
+        comment.delete()
+        data = {
+            'delete': f'댓글 {comment_pk}번이 삭제되었습니다.'
         }
         return Response(data, status=status.HTTP_204_NO_CONTENT)
-    elif request.method == "PUT" :
-        serializer = CommentSerializer(instance=comments, data=request.data)
-        if serializer.is_valid(raise_exception=True) :
+
+    elif request.method == 'PUT':
+        serializer = CommentSerializer(comment, data=request.data)
+        if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
 
+#댓글생성
 @api_view(['POST'])
-def comment_create(request, article_pk) :
-    article = get_list_or_404(Article, pk = article_pk)
-    serializer = CommentSerializer(data=request.data)
-    if serializer.is_valid(raise_exception=True) :
-        serializer.save(article=article) # 해당 글에 댓글쓰기
+def comment_create(request, article_pk):
+    article = get_object_or_404(Article, pk=article_pk)
+    serializer = CommentSerializer(data=request.data) 
+    if serializer.is_valid(raise_exception=True):
+        serializer.save(article=article)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-class PostViewSet(ModelViewSet):
-   queryset = Post.objects.all()
-   serializer_class = PostSerializer
+
+@login_required
+@api_view(['POST'])
+def likes(request, article_pk) :
+        article = get_object_or_404(Article, pk=article_pk)
+        serializer = LikeSerializer(data=request.data)
+        if article.like_users.filter(pk = request.user.pk).exist() : # 동작은 똑같지만, 하나가 있는지 없는지 찾을 떄는 이렇게 써야 부담이 덜 가고 빠름
+        # if request.user in article.like_users.all() : # article에 좋아요를 누른 모든 유저 안에 user 가 있을시
+            # 좋아요 취소
+            article.like_users.remove(request.user)
+        else : # user가 이 글에 좋아요를 누르지 않은 유저라면 
+            # 좋아요 추가
+            article.like_users.add(request.user)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(article=article)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)

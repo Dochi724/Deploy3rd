@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'taggit',
+    'imagekit',
     'articles',
+    
 ]
 
 CORS_ORIGIN_WHITELIST = ['http://localhost:3000']
