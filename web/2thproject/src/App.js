@@ -16,8 +16,8 @@ const App = () => {
       <div>
         <Switch> 
           <PrivateRoute exact path="/" component={Home} />
-          <PublicRoute path="/login" component={Login} />
-          <PublicRoute path="/register" component={Register} />
+          <PublicRoute restricted path="/login" component={Login} />
+          <PublicRoute restricted path="/register" component={Register} />
           <PrivateRoute path="/profile" component={Profile} />
           <PrivateRoute path="/ranking" component={Ranking} />
           <PrivateRoute path="/write" component={Write} />

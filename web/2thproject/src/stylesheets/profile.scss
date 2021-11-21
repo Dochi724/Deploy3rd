@@ -1,0 +1,39 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.mypage_who {
+    display: flex;
+}
+.mypage_save {
+    display: flex;
+}
+.mypage_save img {
+    height: 1.125rem;
+    margin: auto;
+}
+
+.mypage_header p {
+    font-size: 1em;
+    font-weight: bold;
+    margin-left: 0.4em;
+    white-space: nowrap;
+}
+
+.mypage_header {
+    display: flex;
+    width: 23.4375rem;
+    justify-content: space-between;
+    margin-top: 1.5625rem;
+}
+.profile .css-z8drpt-MuiPaper-root-MuiCard-root {
+    box-shadow: 1px 0px 10px rgba(0, 0, 0, 0.25);
+    margin-top: 0.9rem;
+}
+
+.profile_content {
+    align-items: center;
+    display: flex;
+    flex-direction: column
+}

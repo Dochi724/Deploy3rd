@@ -34,7 +34,17 @@ const Login = () => {
     }
     const onSuperClick = () => {
         sessionStorage.setItem('user', "개발자");
-        history.push('/');
+        axios.post('http://127.0.0.1:8000/account/login/', { // 장고에 이 주소랑 통신해서 회원 가입함!! 형식은 POST
+            username: "개발자",
+            password: 123456,
+        }) 
+        .then (response => {
+            console.log(response)
+            if(response.data.success) {
+                history.push('/');
+            }
+        });
+        //history.push('/');
     }
 
     return ( 
