@@ -7,10 +7,16 @@ from rest_framework.decorators import api_view, permission_classes
 # Create your views here.
 from .models import Article,Comment,Like
 from django.contrib.auth.decorators import login_required
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from .permissions import IsOwnerOrReadOnly
+from rest_framework import filters
+from rest_framework.viewsets import ModelViewSet
 
 #게시글
 
+
 @api_view(['GET','POST'])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def article_list(request):
     if request.method =='POST':
         serializer = ArticleListSerializer(data=request.data)
@@ -26,6 +32,7 @@ def article_list(request):
 
 
 @api_view(['GET', 'DELETE', 'PUT'])
+@permission_classes([IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly])
 def article_detail(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
     if request.method=='GET':
@@ -54,6 +61,7 @@ def comment_list(request):
     return Response(serializer.data)
 
 @api_view(['GET', 'DELETE', 'PUT'])
+@permission_classes([IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly])
 def comment_detail(request, comment_pk):
     comment = get_object_or_404(Comment, pk=comment_pk)
     if request.method == 'GET':

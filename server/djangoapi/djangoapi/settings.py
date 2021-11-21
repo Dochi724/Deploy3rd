@@ -44,9 +44,11 @@ INSTALLED_APPS = [
     'taggit',
     'imagekit',
     'articles',
-    
+    'django_filters',
 ]
-
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
 CORS_ORIGIN_WHITELIST = ['http://localhost:3000']
 
 MIDDLEWARE = [
