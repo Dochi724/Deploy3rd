@@ -6,6 +6,8 @@ import { useHistory } from "react-router";
 const Nav = () => {
   const history = useHistory();
   const onLogoutClick = () => {
+    sessionStorage.clear();
+    window.location.reload();
     // 로그아웃
   }
   const onWriteClick = () => {
