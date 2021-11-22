@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import Nav from "./Nav";
 import styled, { createGlobalStyle } from "styled-components";
 import axios from "axios";
-
+import likeIcon from "../images/like.png";
+import '../stylesheets/home.scss'; 
 const Home = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
@@ -16,9 +17,15 @@ const Home = () => {
     <Container>
       <GlobalStyle />
       {posts.map((post) => (
+        <>
         <Post key={post.id}>
           <Body>{post.images}</Body>
         </Post>
+        <div className="like_count">
+        <img src = {likeIcon} />
+        <p style={{fontWeight: 'bold'}}>{post.like_users.length}</p>
+        </div>
+        </>
       ))}
     </Container>
     </>
@@ -51,5 +58,3 @@ const Body = styled.div`
 `;
 
 export default Home;
-  
-// ...

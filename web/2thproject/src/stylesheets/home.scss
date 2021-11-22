@@ -1,0 +1,15 @@
+.like_count {
+    display: flex;
+    margin-top: 10px;
+}
+
+.like_count > img {
+    width: 13px;
+    height: 12px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.like_count > p {
+    margin-left: 4px;
+}
