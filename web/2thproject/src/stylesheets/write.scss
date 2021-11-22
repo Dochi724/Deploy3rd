@@ -1,18 +1,19 @@
-
+.btn {
+    display: flex;
+    justify-content: center;
+}
 .submit {
     background-color: #000000;
     color: #ffffff;
     border-color: #000000;
     font-weight: bold;
-    padding: 3px 8px 3px 8px;
-    display: flex;
-    justify-content: flex-end;
     border-radius: 5px;
-    margin: auto;
+    width: 4.5rem;
+    height: 1.75rem;
+    cursor: pointer;
 }
 
 .img {
-    font-family: Noto Sans;
     font-style: normal;
     font-weight: bold;
     font-size: 1rem;
@@ -38,11 +39,12 @@
     font-size: 1rem;
     font-weight: 700;
     margin-bottom: 0.8125rem;
+    padding-left: 10px;
+    white-space: normal;
 }
 
 .setRegion {
     width: 50px;
-    font-family: Noto Sans;
     font-style: normal;
     font-weight: bold;
     font-size: 1rem;
@@ -56,67 +58,87 @@
     margin: auto;
 }
 
-.region1{
-    width:40px;
+.region{
+    width:3.75rem;
+    border: none;
+    border-bottom: 2px solid #000000;
 }
 
-.region2{
-    width:40px;
-}
 
-.region3{
-    width:40px;
+.region_area {
+    margin-left: 10px;
+    display: flex;
 }
-
+.region_area img {
+    width: 10px;
+    height: 11px;
+    margin: auto;
+}
 
 .Type {
-    width: 345px;
-    font-family: Noto Sans;
     font-style: normal;
     font-weight: bold;
     font-size: 1rem;
-    margin: auto;
-    margin-bottom: 0.2rem;
+    margin-right: 10px;
 }
 
-.tag{
+.tag_area{
     display: flex;
-    justify-content: center;
+    width: 21.5rem;
+    margin: auto;
+}
+
+.tag {
+    margin: auto;
+    width: 11rem;
+    height: 1.875rem;
+    border: 2px solid #dbdbdb;
+    border-radius: 5px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    padding-left: 10px;
+}
+
+.region_total {
+    display: flex;
+    margin: auto;
+    width: 21.5rem;
+    margin-bottom: 20px;
+}
+
+.btn-area{
+    width: 21.5rem;
+    text-align: end;
+    margin-top: 15px;
+    margin-bottom: 35pxl
+}
+.tag_input {
+    display: flex;
     flex-direction: column;
-    align-items: space-between;
-    margin: auto;
+
 }
 
-.tag1{
-    margin: auto;
-    width: 21.5rem;
-    height: 1.875rem;
-    border: 2px solid #dbdbdb;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 0.8125rem;
+.image img {
+    width: 110px;
 }
 
-.tag2{
-    margin: auto;
-    width: 21.5rem;
-    height: 1.875rem;
-    border: 2px solid #dbdbdb;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 0.8125rem;
+.img {
+    display: flex;
+}
+.image_area {
+    display: flex;
 }
 
-.tag3{
-    margin: auto;
-    width: 21.5rem;
-    height: 1.875rem;
-    border: 2px solid #dbdbdb;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 0.8125rem;
+.img p {
+    color: #c4c4c3;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    margin-left: 2px;
 }
 
+#img {
+    margin-top: 5px;
+    margin-bottom: 7px;
+
+}

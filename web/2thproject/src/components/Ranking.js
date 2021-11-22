@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import Nav from "./Nav";
 import styled, { createGlobalStyle } from "styled-components";

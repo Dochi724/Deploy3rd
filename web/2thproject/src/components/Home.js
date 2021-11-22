@@ -9,7 +9,9 @@ const Home = () => {
   useEffect(() => {
     axios
       .get('http://127.0.0.1:8000/articles/')
-      .then(({ data }) => setPosts(data));
+      .then(
+        ({ data }) => setPosts(data));
+        // response => console.log(response))
   }, []);
   return (
     <>
