@@ -1,0 +1,122 @@
+
+.submit {
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #000000;
+    font-weight: bold;
+    padding: 3px 8px 3px 8px;
+    display: flex;
+    justify-content: flex-end;
+    border-radius: 5px;
+    margin: auto;
+}
+
+.img {
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.image{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    width: 345px; 
+
+}
+
+#ex_txt{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 21.5rem;
+    height: 21.5rem;
+    border: 2px solid #dbdbdb;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.8125rem;
+}
+
+.setRegion {
+    width: 50px;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+}
+
+.region{
+    width: 21.5rem;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+
+.region1{
+    width:40px;
+}
+
+.region2{
+    width:40px;
+}
+
+.region3{
+    width:40px;
+}
+
+
+.Type {
+    width: 345px;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: auto;
+    margin-bottom: 0.2rem;
+}
+
+.tag{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: space-between;
+    margin: auto;
+}
+
+.tag1{
+    margin: auto;
+    width: 21.5rem;
+    height: 1.875rem;
+    border: 2px solid #dbdbdb;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.8125rem;
+}
+
+.tag2{
+    margin: auto;
+    width: 21.5rem;
+    height: 1.875rem;
+    border: 2px solid #dbdbdb;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.8125rem;
+}
+
+.tag3{
+    margin: auto;
+    width: 21.5rem;
+    height: 1.875rem;
+    border: 2px solid #dbdbdb;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.8125rem;
+}
+
