@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { Route, Link } from "react-router-dom";
+import { Route, Link, NavLink } from "react-router-dom";
 import '../stylesheets/nav.scss'; 
 import { useHistory } from "react-router";
 const Nav = () => {
@@ -17,13 +17,13 @@ const Nav = () => {
     <div id = "nav">
       <ul>
         <li>
-          <Link to= "/">HOME</Link>
+          <NavLink exact to= "/" className="tab" activeClassName="active">HOME</NavLink>
         </li>
         <li>
-          <Link to="/ranking">RANKING</Link>
+          <NavLink to="/ranking" className="tab" activeClassName="active">RANKING</NavLink>
         </li>
         <li>
-          <Link to="/profile">MY PAGE</Link>
+          <NavLink to="/profile" className="tab" activeClassName="active">MY PAGE</NavLink>
         </li>
         <li id = "nav-button-border">
           <button id = "nav-write-button" onClick = {onWriteClick}>글쓰기</button>

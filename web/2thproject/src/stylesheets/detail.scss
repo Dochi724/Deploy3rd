@@ -1,0 +1,140 @@
+.detail-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.author {
+    display: flex;
+    width: 20.5rem;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.author img {
+    margin-right: 5px;
+}
+
+.detail-like {
+    display: flex;
+    margin-bottom: 5px;
+    width: 19rem;
+    margin: auto;
+}
+
+.detail-like img {
+    width: 13px;
+    height: 12px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 0;
+    margin-right: 5px;
+}
+.detail-img {
+    width: 330px;
+    height: 330px;
+    background-color: aquamarine;
+    margin-bottom: 20px;
+}
+
+.detail-tag {
+    display: flex;
+    width: 19rem;
+    margin: auto;
+}
+.detail-tag > p {
+    margin: 3px;
+    font-weight: bold;
+}
+
+.detail-content {
+    display: flex;
+    margin: auto;
+    width: 19rem;
+    max-height: 50px;
+}
+
+.detail-content > p {
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}
+
+.detail-comment-count {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    margin-top: 6px;
+}
+
+.detail-comment-profile {
+    display: flex;
+    margin-bottom: 3px;
+    font-weight: bold;
+}
+
+.detail-comment-profile > img {
+    margin-right: 5px;
+}
+
+.detail-comment-content-form {
+    margin-bottom: 1rem;
+}
+
+.detail-comment {
+    display: flex;
+    flex-direction: column;
+    width: 19rem;
+    display: flex;
+    margin: auto;
+}
+
+.detail-box {
+    border-bottom: 2px solid #DBDBDB;;
+}
+
+.comment-input {
+    width: 16.5rem;
+    border: 2px solid #c4c4c3;
+    border-radius: 5px;
+    padding-left: 10px;
+    height: 2.5rem;
+    font-weight: bold;
+}
+
+.comment-input::placeholder {
+    color: #c4c4c3;
+    font-weight: bold;
+}
+
+.comment-button {
+    border: none;
+    font-weight: bold;
+    color: #FFCD58;
+    background-color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.detail-comment form {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.detail-button {
+    border: 2px solid #FFCD58;
+    background-color: #ffffff;
+    color: #FFCD58;
+    font-weight: bold;
+    border-radius: 5px;
+    width: 10rem;
+    height: 2rem;
+    cursor: pointer;
+}
+
+.detail-button-area {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

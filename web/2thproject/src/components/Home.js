@@ -4,30 +4,39 @@ import styled, { createGlobalStyle } from "styled-components";
 import axios from "axios";
 import likeIcon from "../images/like.png";
 import '../stylesheets/home.scss'; 
+import { useHistory } from "react-router";
 const Home = () => {
   const [posts, setPosts] = useState([]);
+  const history = useHistory();
   useEffect(() => {
     axios
       .get('http://127.0.0.1:8000/articles/')
       .then(
-        ({ data }) => setPosts(data));
+        ({ data }) => {
+          setPosts(data) 
+          // console.log(data)
+        });
         // response => console.log(response))
   }, []);
+  const onImgClick = (id) => {
+    // console.log(id);
+    history.push({pathname: `/post/${id}`})
+  }
   return (
     <>
     <Nav />
     <Container>
       <GlobalStyle />
       {posts.map((post) => (
-        <>
-        <Post key={post.id}>
-          <Body>{post.images}</Body>
-        </Post>
-        <div className="like_count">
-        <img src = {likeIcon} />
-        <p style={{fontWeight: 'bold'}}>{post.like_users.length}</p>
+        <div>
+          <Post key={post.id} onClick={() => onImgClick(post.id)} >
+            <img src = {post.images}/>
+          </Post>
+          <div className="like_count">
+          <img src = {likeIcon} />
+          <p style={{fontWeight: 'bold'}}>{post.like_users.length}</p>
+          </div>
         </div>
-        </>
       ))}
     </Container>
     </>

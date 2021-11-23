@@ -48,9 +48,10 @@ const Write = () => {
   const onSubmit = (e) => {
     e.preventDefault(); // 새로고침 안되게하는거
     axios.post('http://127.0.0.1:8000/articles/', { // 장고에 이 주소랑 통신해서 회원 가입함!! 형식은 POST
+        title: '',
         images: image,
         tags: regiontag1, // 일단 태그 하나밖에 안된대서 지금..!! 태그 하나만 보내자
-        content: textarea
+        // content: textarea
     }) 
     .then(response => {
         console.log("된다임마")
