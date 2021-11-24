@@ -18,7 +18,7 @@ class ArticleListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Article
-        fields = ('id', 'image','tags')
+        fields = ('id', 'image','tags', 'like_users')
         
     def create(self, validated_data):
         instance = Article.objects.create(**validated_data)
