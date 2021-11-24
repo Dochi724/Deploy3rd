@@ -28,7 +28,7 @@ const Ranking = () => {
     <>
        <Container>
       <GlobalStyle />
-      {posts.map((post) => (
+      {posts.map((post, index) => (
         <div>
           <Post key={post.id} onClick={() => onImgClick(post.id)} >
             <img style={{width: "10em", height: "10em"}} src = { `http://127.0.0.1:8000/articles${post.image}`}/>
@@ -37,6 +37,9 @@ const Ranking = () => {
           <div className="like_count">
           <img src = {likeIcon} />
           <p style={{fontWeight: 'bold'}}>{post.like_users === undefined ? 0 : post.like_users.length}</p>
+          <p>{index === 0 && "🥇"}</p>
+          <p>{index === 1 && "🥈"}</p>
+          <p>{index === 2 && "🥉"}</p>
           </div>
         </div>
       ))}

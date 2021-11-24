@@ -21,9 +21,9 @@ const Login = () => {
             password: password,
         }) 
         .then(response => {
-            console.log(response)
+            // console.log(response)
             if(response.data.success) {
-                sessionStorage.setItem('user', name);
+                sessionStorage.setItem('token', response.data.token);
                 history.push('/');
             }
             else {
@@ -33,7 +33,7 @@ const Login = () => {
     
     }
     const onSuperClick = () => {
-        sessionStorage.setItem('user', "개발자");
+        // sessionStorage.setItem('user', "개발자");
         axios.post('http://127.0.0.1:8000/account/login/', { // 장고에 이 주소랑 통신해서 회원 가입함!! 형식은 POST
             username: "개발자",
             password: 123456,
@@ -41,6 +41,7 @@ const Login = () => {
         .then (response => {
             console.log(response)
             if(response.data.success) {
+                sessionStorage.setItem('token', response.data.token)
                 window.location.reload();
             }
         });
@@ -71,7 +72,7 @@ const Login = () => {
                         </div>
                     </div>
                     <Link to="/register"><button className = "register-button">회원가입</button></Link>
-                <button onClick={onSuperClick}>개발자 모드</button>
+                {/* <button onClick={onSuperClick}>개발자 모드</button> */}
             </div>
         </div>
     )

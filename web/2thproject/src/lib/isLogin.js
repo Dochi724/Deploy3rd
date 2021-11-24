@@ -1,3 +1,3 @@
-const isLogin = () => !!sessionStorage.getItem('user');
+const isLogin = () => !!sessionStorage.getItem('token');
 
 export default isLogin;
