@@ -9,12 +9,15 @@ import Register from './components/Register';
 import PublicRoute from './lib/PublicRoute';
 import PrivateRoute from './lib/PrivageRoute';
 import DetailPage from './components/DetailPage';
+import Nav from './components/Nav';
+import isLogin from './lib/isLogin';
 const App = () => {
   return (
   // PublicRoute : 로그인되어있고 restricted가 true이면 접근 못함 ex)회원가입 페이지
   // PrivateRoute : 로그인 안했을때 접근 못함 ex)home
     <Router>
       <div>
+        {isLogin() && <Nav />}
         <Switch> 
           <PrivateRoute exact path="/" component={Home} />
           <PublicRoute restricted path="/login" component={Login} />

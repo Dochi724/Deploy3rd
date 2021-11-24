@@ -28,12 +28,11 @@ const DetailPageItem = ({item}) => {
     }
 
     const onSubmit = () => {
-        // axios.post(`http://127.0.0.1:8000/articles/${id}/comment/`,{
-        //     // name: sessionStorage.getItem('user'),  
-        //     content: newComment
-        // })
-        // .then(response => console.log(response))
-        // 좋아요가 왜 안돼냐.......................
+        axios.post(`http://127.0.0.1:8000/articles/${id}/comment/`,{
+            // name: sessionStorage.getItem('user'),  
+            content: newComment
+        })
+        .then(response => console.log(response))
     }
 
     return (

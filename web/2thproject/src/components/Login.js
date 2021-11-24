@@ -41,7 +41,7 @@ const Login = () => {
         .then (response => {
             console.log(response)
             if(response.data.success) {
-                history.push('/');
+                window.location.reload();
             }
         });
         //history.push('/');

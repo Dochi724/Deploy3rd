@@ -47,11 +47,13 @@ const Write = () => {
 
   const onSubmit = (e) => {
     e.preventDefault(); // 새로고침 안되게하는거
-    axios.post('http://127.0.0.1:8000/articles/', { // 장고에 이 주소랑 통신해서 회원 가입함!! 형식은 POST
+    axios.post('http://127.0.0.1:8000/articles/', {
+        user_id: sessionStorage.getItem('user'), 
         title: '',
-        images: image,
-        tags: regiontag1, // 일단 태그 하나밖에 안된대서 지금..!! 태그 하나만 보내자
-        // content: textarea
+        images: [image],
+        tags: [regiontag1, regiontag2, regiontag3], // 일단 태그 하나밖에 안된대서 지금..!! 태그 하나만 보내자
+        content: textarea,
+        like_users: [],
     }) 
     .then(response => {
         console.log("된다임마")
@@ -61,7 +63,7 @@ const Write = () => {
         // }
         }) // 일단 서버 대답 받아와서 콘솔로 확인해봤음!!
     .catch(err => console.log(err));
-    
+
   }
 
 

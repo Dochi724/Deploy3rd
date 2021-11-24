@@ -24,7 +24,6 @@ const Home = () => {
   }
   return (
     <>
-    <Nav />
     <Container>
       <GlobalStyle />
       {posts.map((post) => (

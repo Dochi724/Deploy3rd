@@ -8,7 +8,6 @@ import ProfileContent from "./ProfileContents";
 
 const Profile = ({who}) => {
   return (<>
-    <Nav/>
     <div className="profile">
       <div style={{display: 'flex', justifyContent: 'center'}}>
       <div className="mypage_header">

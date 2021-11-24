@@ -37,7 +37,7 @@ const DetailPage = ({match}) => {
 
     return(
         <div>
-            <Nav />
+
             <DetailPageItem item={item} />
         </div>
     )
