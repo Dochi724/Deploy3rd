@@ -14,8 +14,9 @@ const Ranking = () => {
       .get('http://127.0.0.1:8000/articles/')
       .then(
         ({ data }) => {
+          data = data.sort((a,b) => b.like_users.length - a.like_users.length )
           setPosts(data) 
-          // console.log(data)
+          console.log(data)
         });
         // response => console.log(response))
   }, []);
@@ -30,8 +31,8 @@ const Ranking = () => {
       {posts.map((post) => (
         <div>
           <Post key={post.id} onClick={() => onImgClick(post.id)} >
-            <img src = {post.image}/>
-            {/* {console.log(post.images[0])} */}
+            <img style={{width: "10em", height: "10em"}} src = { `http://127.0.0.1:8000/articles${post.image}`}/>
+            {/* {console.log(post.image)} */}
           </Post>
           <div className="like_count">
           <img src = {likeIcon} />
@@ -51,6 +52,9 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Container = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
   width: 23.4375rem;
   margin: auto;
   margin-top: 3em;

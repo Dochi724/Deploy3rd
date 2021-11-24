@@ -1,12 +1,41 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import profile from "../images/profile.png";
 import save from "../images/save.png";
 import blank from "../images/blank.png"; // 대충 임시 사진 들고온거
 import Nav from "./Nav";
 import '../stylesheets/profile.scss'; 
 import ProfileContent from "./ProfileContents";
-
+import axios from "axios";
+import {useHistory, withRouter} from "react-router-dom";
 const Profile = ({who}) => {
+  const history = useHistory;
+  const [item, setItem] = useState(null);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+      const fetchData = async () => {
+          setLoading(true);
+              try {
+                  const response = await axios.get("http://127.0.0.1:8000/articles/myarticle/");
+                  setItem(response.data);
+               
+                  } catch(e) {
+                      console.log(e)
+                  }
+                  setLoading(false);
+              }
+              fetchData();
+          }
+      // console.log(last)
+  ,[]);
+
+  // 대기 중일 때
+  if(loading) {
+      return <div><h3>loading</h3></div>
+  }
+  // 아직 item이 설정되지 않았을 때
+  if (!item) {
+      return null;
+  }
   return (<>
     <div className="profile">
       <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -23,9 +52,10 @@ const Profile = ({who}) => {
       </div>
       </div>
       <div className="profile_content">
+        {item.map(item => <ProfileContent img= {item.image} tag={item.tag} content={item.content} like={item.like_users === undefined ? 0 : item.like_users.length} />)}
+        {/* <ProfileContent img = {blank} tag = "#살려줘 #할게너무많아 #ㅠㅠ" content="대충 폼만 만들었다@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" like={0}/>
         <ProfileContent img = {blank} tag = "#살려줘 #할게너무많아 #ㅠㅠ" content="대충 폼만 만들었다@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" like={0}/>
-        <ProfileContent img = {blank} tag = "#살려줘 #할게너무많아 #ㅠㅠ" content="대충 폼만 만들었다@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" like={0}/>
-        <ProfileContent img = {blank} tag = "#살려줘 #할게너무많아 #ㅠㅠ" content="대충 폼만 만들었다@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" like={0}/>
+        <ProfileContent img = {blank} tag = "#살려줘 #할게너무많아 #ㅠㅠ" content="대충 폼만 만들었다@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" like={0}/> */}
       </div>
     </div>
     </>

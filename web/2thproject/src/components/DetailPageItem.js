@@ -5,7 +5,7 @@ import profile from "../images/profile.png";
 import {useHistory} from "react-router-dom";
 const DetailPageItem = ({item}) => {
     const history = useHistory()
-    const {id, like_users, content, tags, comment_set} = item;
+    const {id, like_users, image, content, tags, comment_set} = item;
     const [newComment, setNewComment] = useState("");
     const onButtonClick = () => {
         axios.post(`http://127.0.0.1:8000/articles/${id}/likes/`)
@@ -27,7 +27,9 @@ const DetailPageItem = ({item}) => {
             // name: sessionStorage.getItem('user'),  
             content: newComment
         })
-        .then(response => console.log(response))
+        .then(
+            // response => console.log(response)
+        )
     }
 
     return (
@@ -37,7 +39,7 @@ const DetailPageItem = ({item}) => {
                 <p>익명</p>
             </div>
             <div className="detail-box">
-                <div className="detail-img">임시 이미지</div>
+                <div className="detail-img"><img src = { `http://127.0.0.1:8000/articles${image}`}/></div>
                 <div className="detail-like"><img src={likeIcon}/><p>{like_users === undefined ? "0개" : `${like_users.length}개`}</p></div>
                 <div className="detail-content"><p>{content}</p></div>
                 <div className="detail-tag"><p>#{tags}</p></div>
