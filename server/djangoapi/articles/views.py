@@ -1,29 +1,56 @@
 from django.http.response import HttpResponse
 from django.shortcuts import get_list_or_404, get_object_or_404, render
+
+from account.serializers import UserSerializer
 from .serializers import ArticleListSerializer,ArticleDetailSerializer,CommentSerializer, LikeSerializer,ArticleSerializer
-from rest_framework import status
+from rest_framework import status, mixins
 from rest_framework.response import Response
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes,authentication_classes
 # Create your views here.
 from .models import Article,Comment,Like
 from django.contrib.auth.decorators import login_required
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly,IsAuthenticated
 from .permissions import IsOwnerOrReadOnly
 from rest_framework import filters
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.views import APIView
+from rest_framework import viewsets
 from rest_framework import generics, filters
+from rest_framework.authentication import TokenAuthentication,SessionAuthentication, BasicAuthentication
+
 #게시글
 
 
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+    authentication_classes = [TokenAuthentication]
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
+ 
+@permission_classes([IsAuthenticated]) 
+class Test(mixins.ListModelMixin, mixins.CreateModelMixin,generics.GenericAPIView):
+    serializer_class = ArticleSerializer
+    queryset = Article.objects.all()
+    def get(self, request, *args, **kwargs):
+            return self.list(request)
+
+    def post(self,request,*args,**kwargs):
+        return self.create(request)
+       
+    
+
 @api_view(['GET','POST'])
-@permission_classes([IsAuthenticatedOrReadOnly])
+@authentication_classes([SessionAuthentication, BasicAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def article_list(request):
     if request.method =='POST':
         serializer = ArticleListSerializer(data=request.data)
         if not serializer.is_valid(raise_exception=True):
             return Response({"message": "Request Body Error."}, status=status.HTTP_409_CONFLICT)
         else :
-            serializer.save()
+            serializer.save(author=request.user)
             return Response({"message": "success!"}, status=status.HTTP_201_CREATED)
     if request.method == 'GET':
         articles = get_list_or_404(Article)

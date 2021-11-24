@@ -5,7 +5,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import update_last_login
 from django.contrib.auth import authenticate
 from rest_framework_jwt.settings import api_settings
-
+from rest_framework.authtoken.models import Token
 User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
@@ -13,18 +13,19 @@ class UserSerializer(serializers.ModelSerializer):
     username = serializers.CharField(required=True)
     password = serializers.CharField(required=True)
     favorite_place = serializers.CharField(required=True)
-
+    
     def create(self, validated_data):
         user = User.objects.create_user(
             email = validated_data['email'],
             username = validated_data['username'],
             favorite_place = validated_data['favorite_place'],
-            password = validated_data['password']
+            password = validated_data['password'],
+
         )
         return user
     class Meta:
         model = User
-        fields = ['username', 'password', 'email', 'favorite_place']
+        fields = ['id','username', 'password', 'email', 'favorite_place']
 
         
 
@@ -56,5 +57,6 @@ class UserLoginSerializer(serializers.Serializer):
             )
         return {
             'username': user.username,
-            'token': jwt_token
+            'token': jwt_token,
+            'id':user.id
         }        

@@ -1,12 +1,12 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny
-
+from rest_framework.permissions import AllowAny,IsAuthenticated
+from rest_framework.authtoken.models import Token
 from .serializers import UserLoginSerializer
 from .serializers import UserSerializer
 from .models import User
-
+from rest_framework import generics
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -18,6 +18,7 @@ def signup(request):
 
         if User.objects.filter(username=serializer.validated_data['username']).first() is None:
             serializer.save()
+            
             return Response({"message": "success!"}, status=status.HTTP_201_CREATED)
         return Response({"message": "아이디가 중복되었습니다."}, status=status.HTTP_409_CONFLICT)
 
@@ -34,7 +35,14 @@ def login(request):
             return Response({'message': 'fail'}, status=status.HTTP_200_OK)
 
         response = {
+            "id": serializer.data.get('id'), 
             'success': 'True',
             'token': serializer.data['token']
         }
         return Response(response, status=status.HTTP_200_OK)        
+
+@permission_classes([IsAuthenticated]) 
+class Test(generics.GenericAPIView):
+    serializer_class = UserSerializer
+    def get(self, request, *args, **kwargs):
+        return Response({'message':'good'},status=status.HTTP_200_OK)

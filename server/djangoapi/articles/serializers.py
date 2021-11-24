@@ -1,4 +1,5 @@
 
+from account.serializers import UserSerializer
 from .models import Article,Comment,Like
 
 from rest_framework import serializers
@@ -18,11 +19,12 @@ class ArticleListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Article
-        fields = ('id', 'image','tags', 'like_users')
+        fields = '__all__'
+        # fields = ('author', 'id', 'image','tags', 'like_users')
         
-    def create(self, validated_data):
-        instance = Article.objects.create(**validated_data)
-        return instance
+    # def create(self, validated_data):
+    #     instance = Article.objects.create(**validated_data)
+    #     return instance
 
 class CommentSerializer(serializers.ModelSerializer):
 

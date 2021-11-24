@@ -45,9 +45,21 @@ INSTALLED_APPS = [
     'imagekit',
     'articles',
     'django_filters',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
+        'rest_auth.registration',
+    'rest_auth',
+
+    
 ]
 REST_FRAMEWORK = {
+      'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        #   'rest_framework_simplejwt.authentication.JWTAuthentication',
+        #     'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 CORS_ORIGIN_WHITELIST = ['http://localhost:3000']
@@ -148,5 +160,10 @@ JWT_AUTH = {
     'JWT_ALGORITHM': 'HS256', 
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3600), 
     'JWT_ALLOW_REFRESH': False, 
-    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7), 
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
 }
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=15),
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=15),
+}
+REST_USE_JWT = True
