@@ -1,6 +1,6 @@
 from django.http.response import HttpResponse
 from django.shortcuts import get_list_or_404, get_object_or_404, render
-from .serializers import ArticleListSerializer,ArticleDetailSerializer,CommentSerializer, LikeSerializer
+from .serializers import ArticleListSerializer,ArticleDetailSerializer,CommentSerializer, LikeSerializer,ArticleSerializer
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
@@ -11,7 +11,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .permissions import IsOwnerOrReadOnly
 from rest_framework import filters
 from rest_framework.viewsets import ModelViewSet
-
+from rest_framework import generics, filters
 #게시글
 
 
@@ -106,3 +106,16 @@ def likes(request, article_pk) :
         if serializer.is_valid(raise_exception=True):
             serializer.save(article=article)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+class PostList(generics.ListAPIView):
+    serializer_class = ArticleSerializer
+    def get_queryset(self):
+        user = self.request.user
+        return Article.objects.filter(author=user)
+
+class PostSearch(generics.ListAPIView):
+    queryset = Article.objects.all()
+    serializer_class = ArticleDetailSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields =['^tags']
