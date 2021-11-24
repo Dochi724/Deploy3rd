@@ -3,6 +3,7 @@ from . import views
 from rest_framework import urls
 from django.conf.urls.static import static
 from django.conf import settings
+
 urlpatterns =[
     path('', views.article_list),
     path('<int:article_pk>/', views.article_detail),
