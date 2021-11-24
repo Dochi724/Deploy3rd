@@ -50,7 +50,8 @@ const Login = () => {
     return ( 
         <div id = "login" onSubmit={onSubmit}>
             <div id = "just-login-div">
-                <h1>로고</h1>
+                <h1>MIMIROK</h1>
+                <p className = "mimirok_info">아름다운 맛의 기록</p>
                 <form onSubmit={onSubmit}>
                     <input type="text" className="login-input" onChange={onNameChange} value={name} placeholder="name" />
                     <input type="password" className="login-input" onChange={onPasswordChange} value={password} placeholder="password"/>

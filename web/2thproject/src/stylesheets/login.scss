@@ -6,7 +6,7 @@
 #login h1 {
     display: flex;
     justify-content: center;
-    margin: 2em auto 1em auto;
+    margin: 2em auto auto;
 }
 #login input {
     margin: auto;
@@ -83,4 +83,11 @@
     cursor: pointer;
     font-size: 0.875rem;
     font-weight: bold;
+}
+
+.mimirok_info {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 1em;
+    color: #9e9e9e;
 }

@@ -16,7 +16,7 @@ const Ranking = () => {
         ({ data }) => {
           data = data.sort((a,b) => b.like_users.length - a.like_users.length )
           setPosts(data) 
-          console.log(data)
+          // console.log(data)
         });
         // response => console.log(response))
   }, []);
