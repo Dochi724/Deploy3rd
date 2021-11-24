@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'imagekit',
     'articles',
     'django_filters',
+    'rest_framework.authtoken'
 ]
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
