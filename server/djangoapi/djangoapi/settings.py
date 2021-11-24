@@ -161,7 +161,6 @@ JWT_AUTH = {
     'JWT_ALGORITHM': 'HS256', 
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3600), 
     'JWT_ALLOW_REFRESH': False, 
-<<<<<<< HEAD
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
 }
 SIMPLE_JWT = {
@@ -169,10 +168,7 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=15),
 }
 REST_USE_JWT = True
-=======
-    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7), 
-}
-
+ 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
->>>>>>> c6237eed03bee0bfbe3fcf614f16c412e55d241f
+

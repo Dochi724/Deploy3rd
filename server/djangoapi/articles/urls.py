@@ -22,4 +22,4 @@ urlpatterns =[
     path('search/',views.PostSearch.as_view()),
     path('<int:article_pk>/likes/', views.likes, name='likes' ),
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
