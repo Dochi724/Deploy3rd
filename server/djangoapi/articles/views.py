@@ -16,35 +16,12 @@ from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework import generics, filters
 from rest_framework.authentication import TokenAuthentication,SessionAuthentication, BasicAuthentication
-
+from django.http import HttpResponseRedirect
 #게시글
 
 
-
-class PostViewSet(viewsets.ModelViewSet):
-    queryset = Article.objects.all()
-    serializer_class = ArticleSerializer
-    authentication_classes = [TokenAuthentication]
-
-    def perform_create(self, serializer):
-        serializer.save(author=self.request.user)
- 
-@permission_classes([IsAuthenticated]) 
-class Test(mixins.ListModelMixin, mixins.CreateModelMixin,generics.GenericAPIView):
-    serializer_class = ArticleSerializer
-    queryset = Article.objects.all()
-    def get(self, request, *args, **kwargs):
-            return self.list(request)
-
-    def post(self,request,*args,**kwargs):
-        return self.create(request)
-       
-    
-
 @api_view(['GET','POST'])
-@authentication_classes([SessionAuthentication, BasicAuthentication, TokenAuthentication])
-@permission_classes([IsAuthenticated])
-# @permission_classes([IsAuthenticatedOrReadOnly])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def article_list(request):
     if request.method =='POST':
         serializer = ArticleListSerializer(data=request.data)
