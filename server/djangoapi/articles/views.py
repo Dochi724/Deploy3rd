@@ -16,7 +16,8 @@ from rest_framework.viewsets import ModelViewSet
 
 
 @api_view(['GET','POST'])
-@permission_classes([IsAuthenticatedOrReadOnly])
+
+# @permission_classes([IsAuthenticatedOrReadOnly])
 def article_list(request):
     if request.method =='POST':
         serializer = ArticleListSerializer(data=request.data)

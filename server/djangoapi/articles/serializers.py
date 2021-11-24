@@ -26,7 +26,7 @@ class ArticleListSerializer(TaggitSerializer, serializers.ModelSerializer):
 
     class Meta:
         model = Article
-        fields = ('id', 'title', 'images','tags')
+        fields = ('id', 'title', 'images','tags','like_users')
         
     def create(self, validated_data):
         instance = Article.objects.create(**validated_data)
