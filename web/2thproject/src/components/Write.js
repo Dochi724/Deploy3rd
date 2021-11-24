@@ -48,10 +48,10 @@ const Write = () => {
   const onSubmit = (e) => {
     e.preventDefault(); // 새로고침 안되게하는거
     axios.post('http://127.0.0.1:8000/articles/', {
-        user_id: sessionStorage.getItem('user'), 
+        // user_id: sessionStorage.getItem('user'), 
         title: '',
         images: [image],
-        tags: [regiontag1, regiontag2, regiontag3], // 일단 태그 하나밖에 안된대서 지금..!! 태그 하나만 보내자
+        tags: regiontag1, // 일단 태그 하나밖에 안된대서 지금..!! 태그 하나만 보내자
         content: textarea,
         like_users: [],
     }) 
@@ -69,7 +69,6 @@ const Write = () => {
 
   return (
     <form onSubmit = {onSubmit}>
-      <Nav />
       <div className="btn">
         <div className = "btn-area">
         <input className = "submit"

@@ -14,7 +14,7 @@ const Home = () => {
       .then(
         ({ data }) => {
           setPosts(data) 
-          // console.log(data)
+          console.log(data)
         });
         // response => console.log(response))
   }, []);
@@ -29,11 +29,12 @@ const Home = () => {
       {posts.map((post) => (
         <div>
           <Post key={post.id} onClick={() => onImgClick(post.id)} >
-            <img src = {post.images}/>
+            <img src = { `http://127.0.0.1:8000${post.image}`}/>
+            {/* {console.log(post.images[0])} */}
           </Post>
           <div className="like_count">
           <img src = {likeIcon} />
-          <p style={{fontWeight: 'bold'}}>{post.like_users.length}</p>
+          <p style={{fontWeight: 'bold'}}>{post.like_users === undefined ? 0 : post.like_users.length}</p>
           </div>
         </div>
       ))}

@@ -11,12 +11,7 @@ const DetailPageItem = ({item}) => {
         axios.post(`http://127.0.0.1:8000/articles/${id}/likes/`)
         .then(response => {
                     console.log(response)
-                    // if (response.data.result) {
-                    //     alert("내 옷장에 추가되었습니다!")
-                    // } else {
-                    //     alert("이미 내 옷장에 존재하는 옷입니다!")
-                    //     // console.log(response)
-                    // }
+                   
                 })
                 .catch(function (error) {
                 });
@@ -43,9 +38,9 @@ const DetailPageItem = ({item}) => {
             </div>
             <div className="detail-box">
                 <div className="detail-img">임시 이미지</div>
-                <div className="detail-like"><img src={likeIcon}/><p>{like_users.length}개</p></div>
+                <div className="detail-like"><img src={likeIcon}/><p>{like_users === undefined ? "0개" : `${like_users.length}개`}</p></div>
                 <div className="detail-content"><p>{content}</p></div>
-                <div className="detail-tag">{tags.map(tag => <p>#{tag}</p>)}</div>
+                <div className="detail-tag"><p>#{tags}</p></div>
                 <div className="detail-button-area">
                     <button className="detail-button" onClick={onButtonClick}>추천 하기</button>
                     <button className="detail-button">게시글 저장하기</button>
