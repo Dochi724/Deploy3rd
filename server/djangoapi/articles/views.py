@@ -44,6 +44,7 @@ class Test(mixins.ListModelMixin, mixins.CreateModelMixin,generics.GenericAPIVie
 @api_view(['GET','POST'])
 @authentication_classes([SessionAuthentication, BasicAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticatedOrReadOnly])
 def article_list(request):
     if request.method =='POST':
         serializer = ArticleListSerializer(data=request.data)

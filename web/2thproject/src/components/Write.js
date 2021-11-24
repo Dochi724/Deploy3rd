@@ -8,6 +8,7 @@ import tag from "../images/#.png";
 import '../stylesheets/write.scss';
 
 const Write = () => {
+
   const history = useHistory();
   const [textarea, setTextarea] = useState("");
   const [hashtag_1, setHashtag1] = useState(""); // 음식 분류
@@ -17,7 +18,8 @@ const Write = () => {
   const [regiontag2, setRegiontag2] = useState("");
   const [regiontag3, setRegiontag3] = useState("");
   const [image, setImage] = useState(temp);
-
+  const token = sessionStorage.getItem('token');
+  console.log(`JWT ${token}`);
   const onTextChange = (e) => {
     setTextarea(e.target.value);
   };
@@ -48,13 +50,15 @@ const Write = () => {
   const onSubmit = (e) => {
     e.preventDefault(); // 새로고침 안되게하는거
     axios.post('http://127.0.0.1:8000/articles/', {
-        user_id: sessionStorage.getItem('user'), 
-        title: '',
-        images: [image],
-        tags: [regiontag1, regiontag2, regiontag3], // 일단 태그 하나밖에 안된대서 지금..!! 태그 하나만 보내자
+        images: image,
+        tags: regiontag1, // 일단 태그 하나밖에 안된대서 지금..!! 태그 하나만 보내자
         content: textarea,
         like_users: [],
-    }) 
+    }, { headers: {
+      'Authorization': `JWT ${token}`,
+      'Content-Type': 'application/json'
+  }
+}) 
     .then(response => {
         console.log("된다임마")
         console.log(response)
@@ -69,7 +73,6 @@ const Write = () => {
 
   return (
     <form onSubmit = {onSubmit}>
-      <Nav />
       <div className="btn">
         <div className = "btn-area">
         <input className = "submit"

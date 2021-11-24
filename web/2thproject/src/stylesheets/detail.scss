@@ -32,8 +32,6 @@
 }
 .detail-img {
     width: 330px;
-    height: 330px;
-    background-color: aquamarine;
     margin-bottom: 20px;
 }
 
@@ -137,4 +135,8 @@
     justify-content: space-between;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.detail-img img {
+    width:330px;
 }

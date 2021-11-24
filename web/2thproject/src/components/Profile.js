@@ -5,8 +5,37 @@ import blank from "../images/blank.png"; // 대충 임시 사진 들고온거
 import Nav from "./Nav";
 import '../stylesheets/profile.scss'; 
 import ProfileContent from "./ProfileContents";
-
+import { useState } from "react";
 const Profile = ({who}) => {
+  // const history = useHistory();
+  // const id = match.params.id
+  // const [item, setItem] = useState(null);
+  // const [loading, setLoading] = useState(false);
+  // useEffect(() => {
+  //     const fetchData = async () => {
+  //         setLoading(true);
+  //             try {
+  //                 const response = await axios.get(`http://127.0.0.1:8000/articles/${id}`,);
+  //                 setItem(response.data);
+               
+  //                 } catch(e) {
+  //                     console.log(e)
+  //                 }
+  //                 setLoading(false);
+  //             }
+  //             fetchData();
+  //         }
+  //     // console.log(last)
+  // ,[]);
+
+  // // 대기 중일 때
+  // if(loading) {
+  //     return <div><h3>loading</h3></div>
+  // }
+  // // 아직 item이 설정되지 않았을 때
+  // if (!item) {
+  //     return null;
+  // }
   return (<>
     <div className="profile">
       <div style={{display: 'flex', justifyContent: 'center'}}>

@@ -14,6 +14,7 @@ const Ranking = () => {
       .get('http://127.0.0.1:8000/articles/')
       .then(
         ({ data }) => {
+          data = data.sort((a,b) => b.like_users.length - a.like_users.length )
           setPosts(data) 
           // console.log(data)
         });
@@ -25,16 +26,20 @@ const Ranking = () => {
   }
   return (
     <>
-    <Container>
+       <Container>
       <GlobalStyle />
-      {posts.map((post) => (
+      {posts.map((post, index) => (
         <div>
           <Post key={post.id} onClick={() => onImgClick(post.id)} >
-            <img src = {post.images}/>
+            <img style={{width: "10em", height: "10em"}} src = { `http://127.0.0.1:8000/articles${post.image}`}/>
+            {/* {console.log(post.image)} */}
           </Post>
           <div className="like_count">
           <img src = {likeIcon} />
-          <p style={{fontWeight: 'bold'}}>{post.like_users.length}</p>
+          <p style={{fontWeight: 'bold'}}>{post.like_users === undefined ? 0 : post.like_users.length}</p>
+          <p>{index === 0 && "🥇"}</p>
+          <p>{index === 1 && "🥈"}</p>
+          <p>{index === 2 && "🥉"}</p>
           </div>
         </div>
       ))}
@@ -50,6 +55,9 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Container = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
   width: 23.4375rem;
   margin: auto;
   margin-top: 3em;

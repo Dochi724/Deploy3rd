@@ -1,6 +1,8 @@
 from django.urls import path, include
 from . import views
 from rest_framework import urls
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 urlpatterns =[
@@ -20,7 +22,4 @@ urlpatterns =[
     path('search/',views.PostSearch.as_view()),
     path('<int:article_pk>/likes/', views.likes, name='likes' ),
 
-
- ]
-
-
+]

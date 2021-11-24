@@ -65,8 +65,9 @@ const Register = () => {
     }
     return (
         <div className = "register">
-            <h1>로고</h1>
-            <h1>회원가입</h1>
+            <h1 id = "mimirok_title">MIMIROK</h1>
+            <p className = "mimirok_info">아름다운 맛의 기록</p>
+            <h1 id = "register_title">회원가입</h1>
             <form onSubmit={onSubmit}>
                 <div>
                     <div className = "register-label">
