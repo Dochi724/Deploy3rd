@@ -40,7 +40,7 @@ const Home = () => {
        .then(
          ({ data }) => {
            setPosts(data) 
-           console.log(data)
+          //  console.log(data)
          });
          // response => console.log(response)
        }
@@ -49,8 +49,10 @@ const Home = () => {
          .get('http://127.0.0.1:8000/articles/')
          .then(
            ({ data }) => {
+            data.image=`http://127.0.0.1:8000/articles${data.image}`
              setPosts(data) 
-            // console.log(data)
+            //  data.image=`http://127.0.0.1:8000/articles${data.image}`
+            // console.log(data.image)
            });
        }
   }
@@ -87,8 +89,8 @@ const Home = () => {
       {posts.map((post) => (
         <div>
           <Post key={post.id} onClick={() => onImgClick(post.id)} >
-            <img style={{width: "10em", height: "10em"}}src = { `http://127.0.0.1:8000/articles${post.image}`}/>
-            {/* {console.log(post.image)} */}
+            <img style={{width: "10em", height: "10em"}} src = {post.image.indexOf('http') === 0 ? post.image : `http://127.0.0.1:8000/articles${post.image}`}/>
+            {/* {console.log((post.image).indexOf('http'))} */}
           </Post>
           <div className="like_count">
           <img src = {likeIcon} />
