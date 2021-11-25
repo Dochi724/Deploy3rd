@@ -61,11 +61,10 @@ const Write = () => {
   }
 }) 
     .then(response => {
-        // console.log("된다임마")
-        // console.log(response)
-        // if(response.data.message == "success!") {
-        //     history.push('/')
-        // }
+        console.log(response.statusText)
+        if(response.statusText == "Created") {
+            history.push('/')
+        }
         }) // 일단 서버 대답 받아와서 콘솔로 확인해봤음!!
     .catch(err => console.log(err));
 

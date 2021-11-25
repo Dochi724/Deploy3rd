@@ -5,7 +5,7 @@ import axios from "axios";
 import likeIcon from "../images/like.png";
 import '../stylesheets/home.scss'; 
 import { useHistory } from "react-router";
-
+import defaultImg from "../images/default.jpg";
 const Ranking = () => {
   const [posts, setPosts] = useState([]);
   const history = useHistory();
@@ -31,7 +31,7 @@ const Ranking = () => {
       {posts.map((post, index) => (
         <div>
           <Post key={post.id} onClick={() => onImgClick(post.id)} >
-            <img style={{width: "10em", height: "10em"}} src = { `http://127.0.0.1:8000/articles${post.image}`}/>
+          <img style={{width: "10em", height: "10em"}} src = {post.image ? (post.image.indexOf('http') === 0 ? post.image : `http://127.0.0.1:8000/articles${post.image}`): defaultImg}/>
             {/* {console.log(post.image)} */}
           </Post>
           <div className="like_count">

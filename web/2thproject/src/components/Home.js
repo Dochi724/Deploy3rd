@@ -3,6 +3,7 @@ import Nav from "./Nav";
 import styled, { createGlobalStyle } from "styled-components";
 import axios from "axios";
 import likeIcon from "../images/like.png";
+import defaultImg from "../images/default.jpg";
 import '../stylesheets/home.scss'; 
 import { useHistory } from "react-router";
 import InputLabel from '@mui/material/InputLabel';
@@ -89,7 +90,7 @@ const Home = () => {
       {posts.map((post) => (
         <div>
           <Post key={post.id} onClick={() => onImgClick(post.id)} >
-            <img style={{width: "10em", height: "10em"}} src = {post.image && post.image.indexOf('http') === 0 ? post.image : `http://127.0.0.1:8000/articles${post.image}`}/>
+            <img style={{width: "10em", height: "10em"}} src = {post.image ? (post.image.indexOf('http') === 0 ? post.image : `http://127.0.0.1:8000/articles${post.image}`): defaultImg}/>
             {/* {console.log((post.image).indexOf('http'))} */}
           </Post>
           <div className="like_count">

@@ -3,6 +3,7 @@ import likeIcon from "../images/like.png";
 import axios from "axios";
 import profile from "../images/profile.png";
 import {useHistory} from "react-router-dom";
+import defaultImg from "../images/default.jpg";
 const DetailPageItem = ({item}) => {
     const history = useHistory()
     const {id, like_users, image, content, tags, comment_set} = item;
@@ -39,7 +40,7 @@ const DetailPageItem = ({item}) => {
                 <p>익명</p>
             </div>
             <div className="detail-box">
-                <div className="detail-img"><img src = { `http://127.0.0.1:8000/articles${image}`}/></div>
+                <div className="detail-img"><img src = { image ? `http://127.0.0.1:8000/articles${image}`:defaultImg}/></div>
                 <div className="detail-like"><img src={likeIcon}/><p>{like_users === undefined ? "0개" : `${like_users.length}개`}</p></div>
                 <div className="detail-content"><p>{content}</p></div>
                 <div className="detail-tag"><p>#{tags}</p></div>
