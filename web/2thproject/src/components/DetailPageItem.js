@@ -10,7 +10,7 @@ const DetailPageItem = ({item}) => {
     const onButtonClick = () => {
         axios.post(`http://127.0.0.1:8000/articles/${id}/likes/`)
         .then(response => {
-                    console.log(response)
+                    // console.log(response)
                    
                 })
                 .catch(function (error) {

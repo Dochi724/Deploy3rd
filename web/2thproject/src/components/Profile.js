@@ -52,9 +52,9 @@ const Profile = ({who}) => {
       </div>
       </div>
       <div className="profile_content">
-        <ProfileContent img = {blank} tag = "#살려줘 #할게너무많아 #ㅠㅠ" content="대충 폼만 만들었다@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" like={0}/>
-        <ProfileContent img = {blank} tag = "#살려줘 #할게너무많아 #ㅠㅠ" content="대충 폼만 만들었다@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" like={0}/>
-        <ProfileContent img = {blank} tag = "#살려줘 #할게너무많아 #ㅠㅠ" content="대충 폼만 만들었다@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" like={0}/>
+        <ProfileContent img = {blank} tag = "#살려줘 #할게너무많아 #ㅠㅠ" content="DRF 괜히했습니다 잘못했어요" like={0}/>
+        <ProfileContent img = {blank} tag = "#살려줘 #할게너무많아 #ㅠㅠ" content="DRF 괜히했습니다 잘못했어요@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" like={0}/>
+        <ProfileContent img = {blank} tag = "#살려줘 #할게너무많아 #ㅠㅠ" content="DRF 괜히했습니다 잘못했어요@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" like={0}/>
       </div>
     </div>
     </>

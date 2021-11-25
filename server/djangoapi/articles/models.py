@@ -14,7 +14,7 @@ class Article(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     like_users = models.ManyToManyField(User, blank=True, related_name='like_articles' )
     tags = models.TextField(max_length=10, blank=True)
-    image = models.ImageField(blank=False, upload_to="uploads")
+    image = models.ImageField(blank=True, upload_to="uploads")
 
     def like_count(self):
         return self.like_users.count()

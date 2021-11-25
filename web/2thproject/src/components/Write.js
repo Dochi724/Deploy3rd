@@ -19,7 +19,7 @@ const Write = () => {
   const [regiontag3, setRegiontag3] = useState("");
   const [image, setImage] = useState(temp);
   const token = sessionStorage.getItem('token');
-  console.log(`JWT ${token}`);
+  // console.log(`JWT ${token}`);
   const onTextChange = (e) => {
     setTextarea(e.target.value);
   };
@@ -49,19 +49,20 @@ const Write = () => {
 
   const onSubmit = (e) => {
     e.preventDefault(); // 새로고침 안되게하는거
-    axios.post('http://127.0.0.1:8000/articles/', {
-        images: image,
-        tags: regiontag1, // 일단 태그 하나밖에 안된대서 지금..!! 태그 하나만 보내자
-        content: textarea,
-        like_users: [],
+    axios.post('http://127.0.0.1:8000/articles/test/', {
+      author: 1,
+      // image: image,
+      tags: regiontag1, // 일단 태그 하나밖에 안된대서 지금..!! 태그 하나만 보내자
+      content: textarea,
+      like_users: [],
     }, { headers: {
       'Authorization': `JWT ${token}`,
       'Content-Type': 'application/json'
   }
 }) 
     .then(response => {
-        console.log("된다임마")
-        console.log(response)
+        // console.log("된다임마")
+        // console.log(response)
         // if(response.data.message == "success!") {
         //     history.push('/')
         // }

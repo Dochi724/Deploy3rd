@@ -16,10 +16,9 @@ from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework import generics, filters
 from rest_framework.authentication import TokenAuthentication,SessionAuthentication, BasicAuthentication
+from django.http import HttpResponseRedirect
 
 #게시글
-
-
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.all()
@@ -28,7 +27,7 @@ class PostViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
- 
+
 @permission_classes([IsAuthenticated]) 
 class Test(mixins.ListModelMixin, mixins.CreateModelMixin,generics.GenericAPIView):
     serializer_class = ArticleSerializer
@@ -38,12 +37,8 @@ class Test(mixins.ListModelMixin, mixins.CreateModelMixin,generics.GenericAPIVie
 
     def post(self,request,*args,**kwargs):
         return self.create(request)
-       
-    
 
 @api_view(['GET','POST'])
-@authentication_classes([SessionAuthentication, BasicAuthentication, TokenAuthentication])
-@permission_classes([IsAuthenticated])
 # @permission_classes([IsAuthenticatedOrReadOnly])
 def article_list(request):
     if request.method =='POST':
@@ -51,7 +46,7 @@ def article_list(request):
         if not serializer.is_valid(raise_exception=True):
             return Response({"message": "Request Body Error."}, status=status.HTTP_409_CONFLICT)
         else :
-            serializer.save(author=request.user)
+            serializer.save()
             return Response({"message": "success!"}, status=status.HTTP_201_CREATED)
     if request.method == 'GET':
         articles = get_list_or_404(Article)
@@ -134,7 +129,6 @@ def likes(request, article_pk) :
         if serializer.is_valid(raise_exception=True):
             serializer.save(article=article)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-
 
 class PostList(generics.ListAPIView):
     serializer_class = ArticleSerializer

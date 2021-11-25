@@ -24,7 +24,7 @@ const Login = () => {
             // console.log(response)
             if(response.data.success) {
                 sessionStorage.setItem('token', response.data.token);
-                history.push('/');
+                window.location.reload();
             }
             else {
                 alert('로그인 실패!');
@@ -39,7 +39,7 @@ const Login = () => {
             password: 123456,
         }) 
         .then (response => {
-            console.log(response)
+            // console.log(response)
             if(response.data.success) {
                 sessionStorage.setItem('token', response.data.token)
                 window.location.reload();
